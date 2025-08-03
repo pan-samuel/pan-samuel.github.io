@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Attention To Flash Attention: Out Performing SPDA with CUDA Kernels From Scratch"
-date:   2025-05-19 01:04:05 -0400
+date:   2025-08-02 01:04:05 -0400
 categories: jekyll update
 ---
 
@@ -189,9 +189,7 @@ This formula ensures that previously accumulated contributions in $$O_i$$ are pr
 The algorithm then writes the updated output block and statistics back to HBM.
 
 ## Custom Kernels
-I built this project for two reasons. First, the original Flash Attention paper focuses on the mathematical formulation rather than implementation details, it doesn't specify the exact code optimizations or CUDA-specific techniques used. Second, the original codebase has evolved significantly over the past two years. Flash Attention has been updated through multiple versions (FA2, FA3) and integrated into CUTLASS, which abstracts away many of the low-level optimizations that are essential to understanding the algorithm's performance characteristics. 
-
-Note: You should have a minimal understanding of GPU architecture and CUDA (what threads, blocks, etc) are for the following kernels to make sense.
+Note: You should have a minimal understanding of GPU architecture and CUDA (what threads, blocks, etc) are for the following kernels to make sense. [Github](https://github.com/pan-samuel/flash-attention/tree/main/FA1-fp32)
 
 ### Kernel 1 - Minimal FA Implementation
 Implementation 1 has inspiration from the [flash-attention-minimal](https://github.com/tspeterkim/flash-attention-minimal) repository, though it differs in some ways. This kernel implements a single-pass attention algorithm that uses the core principles of Flash Attention while remaining simple enough to analyze and optimize systematically.
